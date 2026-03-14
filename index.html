@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinCal Suite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="hdr">
+      <div class="logo-wrap">
+        <div class="logo-mark">FC</div>
+        <div class="logo-text">
+          <div class="t1">Fin<span>Cal</span></div>
+          <div class="t2">Calculator</div>
+        </div>
+      </div>
+      <div class="hdr-right">
+        <div class="hdr-badge">HDFC Mutual Fund</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    <div class="hero-content">
+      <h1>Financial <em>Calculator</em><br>Suite</h1>
+      <p class="hero-desc">Six interactive mutual fund calculators — from basic SIP to advanced goal planning. All
+        figures are illustrative; adjust assumptions freely.</p>
+      <div class="hero-pills">
+        <div class="pill">SIP</div>
+        <div class="pill">SWP</div>
+        <div class="pill">Top-Up SIP</div>
+        <div class="pill">Goal-Based</div>
+        <div class="pill">Retirement</div>
+        <div class="pill">Advanced SIP ✦</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="tab-nav-wrap">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(0)">SIP</button>
+      <button class="tab-btn" onclick="switchTab(1)">SWP</button>
+      <button class="tab-btn" onclick="switchTab(2)">Top-Up SIP</button>
+      <button class="tab-btn" onclick="switchTab(3)">Goal-Based</button>
+      <button class="tab-btn" onclick="switchTab(4)">Retirement</button>
+      <button class="tab-btn" onclick="switchTab(5)">Advanced SIP <span class="tab-badge">NEW</span></button>
+    </div>
+  </div>
+
+  <div class="sections">
+
+    <!-- ══════════════════ 1. SIP ══════════════════ -->
+    <div class="section active" id="sec-0">
+      <div class="sec-header anim-fade-up">
+        <h2>SIP Calculator</h2>
+        <div class="sec-divider"></div>
+        <p>Estimate the future value of your Systematic Investment Plan with monthly compounding.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="panel anim-fade-up delay-1">
+          <div class="ph">
+            <div class="ph-icon">📈</div>
+            <h2>Inputs</h2>
+          </div>
+          <div class="pb">
+            <div class="field">
+              <div class="fh"><label>Monthly SIP Amount</label>
+                <div><span class="fv" id="s1-pv">₹5,000</span><span class="fu">/mo</span></div>
+              </div>
+              <input type="range" id="s1-p" min="500" max="100000" step="500" value="5000" />
+              <div class="rl"><span>₹500</span><span>₹1L</span></div>
+              <input class="ni" type="number" id="s1-pn" value="5000" min="500" max="100000" />
+            </div>
+            <div class="field">
+              <div class="fh"><label>Expected Annual Return</label>
+                <div><span class="fv" id="s1-rv">12</span><span class="fu">% p.a.</span></div>
+              </div>
+              <input type="range" id="s1-r" min="1" max="30" step="0.5" value="12" />
+              <div class="rl"><span>1%</span><span>30%</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Investment Duration</label>
+                <div><span class="fv" id="s1-yv">10</span><span class="fu">yrs</span></div>
+              </div>
+              <input type="range" id="s1-y" min="1" max="40" step="1" value="10" />
+              <div class="rl"><span>1yr</span><span>40yrs</span></div>
+            </div>
+            <button class="atog" onclick="tog('a1')"><span>&#9432; Assumptions &amp; Disclosures</span><span
+                class="tarr" id="a1-arr">▼</span></button>
+            <div class="abody" id="a1">
+              <div class="ai"><span class="ail">Compounding</span><span class="ain">Monthly</span></div>
+              <div class="ai"><span class="ail">SIP timing</span><span class="ain">Start of month</span></div>
+              <div class="ai"><span class="ail">Return type</span><span class="ain">Constant (illustrative)</span></div>
+              <div class="ai"><span class="ail">Tax / exit load</span><span class="ain">Not applied</span></div>
+            </div>
+            <div class="fbox">
+              <div class="ftitle">Formula</div>
+              <div class="fline"><strong>r</strong> = Annual Rate ÷ 12 &nbsp;|&nbsp; <strong>n</strong> = Years × 12
+              </div>
+              <div class="fline"><em>FV</em> = P × [((1+r)ⁿ − 1) ÷ r] × (1+r)</div>
+            </div>
+          </div>
+        </div>
+        <div class="anim-fade-up delay-2">
+          <div class="panel mb24">
+            <div class="ph">
+              <div class="ph-icon">⭐</div>
+              <h2>Results</h2>
+            </div>
+            <div class="pb">
+              <div class="res-grid" id="s1-res">
+                <div class="rc card-enter">
+                  <div class="rl2">Invested</div>
+                  <div class="rv" id="s1-ri">₹6.00L</div>
+                </div>
+                <div class="rc card-enter delay-1">
+                  <div class="rl2">Est. Returns</div>
+                  <div class="rv" style="color:var(--red)" id="s1-rr">₹4.35L</div>
+                </div>
+                <div class="rc hl card-enter delay-2">
+                  <div class="rl2">Estimated Future Value</div>
+                  <div class="rv" id="s1-rf">₹11.61L</div>
+                  <div class="rg" id="s1-rg">93% gain on invested</div>
+                </div>
+              </div>
+              <div class="clegend">
+                <div class="cli">
+                  <div class="cld" style="background:#224c87"></div>Invested
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#da3832"></div>Returns
+                </div>
+              </div>
+              <div class="chart-wrap"><canvas id="c1"></canvas></div>
+              <div class="drow">
+                <canvas id="d1" width="100" height="100"></canvas>
+                <div class="dstats">
+                  <div class="dr"><span class="drl"><span class="ddot"
+                        style="background:#224c87"></span>Invested</span><span class="drv" id="d1-i">₹6.00L</span></div>
+                  <div class="dr"><span class="drl"><span class="ddot"
+                        style="background:#da3832"></span>Returns</span><span class="drv" id="d1-r">₹4.35L</span></div>
+                  <div class="dr" style="background:var(--blue-pale);padding:7px 8px;border-radius:6px;margin-top:4px">
+                    <span class="drl" style="font-weight:700;color:var(--blue)">Total</span><span class="drv"
+                      style="color:var(--blue)" id="d1-t">₹11.61L</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Growth Line Chart -->
+          <div class="growth-chart-wrap">
+            <div class="growth-chart-title">Investment Growth Over Time</div>
+            <div class="growth-chart-canvas"><canvas id="growth-chart-1"></canvas></div>
+          </div>
+          <div class="panel" style="margin-top:20px">
+            <div class="ph">
+              <div class="ph-icon">📋</div>
+              <h2>Year-wise Breakdown</h2>
+            </div>
+            <div class="table-wrap">
+              <table class="ytable">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Invested</th>
+                    <th>Returns</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody id="t1"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Performing Mutual Funds -->
+      <div class="mf-section anim-fade-up delay-3">
+        <div class="mf-eyebrow">TOP PERFORMING MUTUAL FUNDS FOR SIP</div>
+        <div class="mf-heading">Explore the top performers to make the right choice</div>
+        <table class="mf-table">
+          <thead>
+            <tr>
+              <th>Fund Name</th>
+              <th style="text-align:right">3Y Return</th>
+              <th style="text-align:right">Min SIP Invt.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="mf-fund-info">
+                  <div class="mf-fund-logo" style="background:#fff;border-radius:8px;padding:4px"><img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Quant_Mutual_Fund_Logo.png/120px-Quant_Mutual_Fund_Logo.png"
+                      width="36" height="36" style="object-fit:contain;border-radius:4px"
+                      onerror="this.parentElement.textContent='Q'" /></div>
+                  <div>
+                    <div class="mf-fund-name">Quant Small Cap Fund</div>
+                    <div class="mf-fund-cat">Equity <span>•</span> Small Cap</div>
+                  </div>
+                </div>
+              </td>
+              <td class="mf-return">16.97%</td>
+              <td class="mf-sip">₹1000.00</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mf-fund-info">
+                  <div class="mf-fund-logo" style="background:#fff;border-radius:8px;padding:4px"><img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Quant_Mutual_Fund_Logo.png/120px-Quant_Mutual_Fund_Logo.png"
+                      width="36" height="36" style="object-fit:contain;border-radius:4px"
+                      onerror="this.parentElement.textContent='Q'" /></div>
+                  <div>
+                    <div class="mf-fund-name">Quant Mid Cap Fund</div>
+                    <div class="mf-fund-cat">Equity <span>•</span> Mid Cap</div>
+                  </div>
+                </div>
+              </td>
+              <td class="mf-return">13.76%</td>
+              <td class="mf-sip">₹1000.00</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mf-fund-info">
+                  <div class="mf-fund-logo"
+                    style="background:#e8eef6;border-radius:8px;padding:4px;font-weight:800;color:#da3832;font-size:11px;display:flex;align-items:center;justify-content:center;width:40px;height:40px">
+                    HDFC</div>
+                  <div>
+                    <div class="mf-fund-name">HDFC Flexi Cap Fund</div>
+                    <div class="mf-fund-cat">Equity <span>•</span> Flexi Cap</div>
+                  </div>
+                </div>
+              </td>
+              <td class="mf-return">19.90%</td>
+              <td class="mf-sip">₹100.00</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mf-fund-info">
+                  <div class="mf-fund-logo" style="background:#fff;border-radius:8px;overflow:hidden;padding:0"><img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Nippon_Life_Insurance_logo.svg/120px-Nippon_Life_Insurance_logo.svg.png"
+                      width="40" height="40" style="object-fit:cover" onerror="this.parentElement.textContent='NI'" />
+                  </div>
+                  <div>
+                    <div class="mf-fund-name">Nippon India Large Cap Fund</div>
+                    <div class="mf-fund-cat">Equity <span>•</span> Large Cap</div>
+                  </div>
+                </div>
+              </td>
+              <td class="mf-return">17.21%</td>
+              <td class="mf-sip">₹100.00</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mf-explore-wrap">
+          <button class="mf-explore-btn" onclick="alert('Redirecting to HDFC Mutual Fund explorer…')">Explore
+            Now</button>
+        </div>
+      </div>
+
+      <!-- SIP INFO SECTION -->
+      <div class="info-section">
+        <h2>SIP Calculator – Systematic Investment Plan Calculator</h2>
+        <p class="info-intro">Prospective investors think that SIPs and mutual funds are the same. However, SIPs are
+          merely a method of investing in mutual funds. A SIP calculator is a tool that helps you determine the returns
+          you can earn when parking funds in a mutual fund scheme. SIP is a process of investing a fixed sum of money in
+          mutual funds at regular intervals — monthly, quarterly, or weekly.</p>
+
+        <h3>What is a SIP Calculator?</h3>
+        <p>A SIP calculator is a simple tool that allows individuals to get an idea of the returns on their mutual fund
+          investments made through SIP. SIP investments in mutual funds have become one of the most popular investment
+          options for millennials.</p>
+        <p>These mutual fund SIP calculators are designed to give potential investors an estimate of their mutual fund
+          investments. The SIP calculator does not provide clarification for the exit load and expense ratio (if any).
+        </p>
+        <p>This calculator will calculate the wealth gain and expected returns for your monthly SIP investment. You get
+          a rough estimate on the maturity amount for any of your monthly SIP based on a projected annual return rate.
+        </p>
+
+        <h3>How is SIP Calculated?</h3>
+        <p>A SIP plan calculator works on the following formula:</p>
+        <div class="info-formula-box">
+          <p><strong>M = P × {[(1 + i)ⁿ − 1] / i} × (1 + i)</strong></p>
+          <p>Where: <strong>M</strong> = Amount received at maturity &nbsp;|&nbsp; <strong>P</strong> = Amount invested
+            at regular intervals &nbsp;|&nbsp; <strong>n</strong> = Number of payments made &nbsp;|&nbsp;
+            <strong>i</strong> = Periodic rate of interest
+          </p>
+        </div>
+        <p>The monthly rate of return <strong>i</strong> is derived from the annual rate using: <em>i = [(1 + Annual
+            Return/100)^(1/12)] − 1</em></p>
+        <div class="info-highlight">For example, for a ₹1,000/month SIP at 12% annual return for 12 months, i =
+          0.009488... and M ≈ ₹12,809. Note: 12% annual ÷ 12 = 1% monthly is <strong>incorrect</strong> because returns
+          are compounded.</div>
+
+        <h3>How can a SIP return calculator help you?</h3>
+        <p>SIPs are a more lucrative mode of investing funds compared to a lump-sum amount. It helps you become
+          financially disciplined and create a habit of savings that can benefit you in the future.</p>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">🎯</div>
+            <div class="info-card-title">Determines Investment Amount</div>
+            <div class="info-card-body">Helps you decide how much you want to invest to reach your target.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📊</div>
+            <div class="info-card-title">Shows Total Invested</div>
+            <div class="info-card-body">Tells you the total amount you have invested over the tenure.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">💰</div>
+            <div class="info-card-title">Estimated Returns</div>
+            <div class="info-card-body">Gives an estimated value of returns upon investment maturity.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">⏱️</div>
+            <div class="info-card-title">Saves Time</div>
+            <div class="info-card-body">Instant calculations without the need for manual computation.</div>
+          </div>
+        </div>
+
+        <h3>Advantages of Using the SIP Calculator</h3>
+        <ul>
+          <li>Plan your investment based on the amount and tenure.</li>
+          <li>Compute an estimation of the total value of investments at the end of your SIP tenure.</li>
+          <li>Shows accurate results and helps you save time required during a manual calculation.</li>
+          <li>A systematic investment plan calculator ensures your savings portfolio is as per your requirements and
+            financial needs.</li>
+        </ul>
+
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What is the minimum amount for a SIP investment?</div>
+          <div class="faq-a">The minimum SIP investment varies by fund house and scheme — typically starting from ₹100
+            to ₹500 per month. HDFC Flexi Cap Fund, for instance, allows SIPs from as low as ₹100 per month.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Can I increase my SIP amount mid-tenure?</div>
+          <div class="faq-a">Yes. You can start a new SIP or use a Step-Up/Top-Up SIP option offered by many fund
+            houses, which automatically increases your SIP amount by a fixed percentage each year.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Is the return shown by the SIP calculator guaranteed?</div>
+          <div class="faq-a">No. The returns shown are illustrative estimates based on a constant assumed rate of
+            return. Actual mutual fund returns vary with market conditions and are not guaranteed.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What is the difference between SIP and lump sum investment?</div>
+          <div class="faq-a">A SIP invests a fixed amount at regular intervals (monthly/quarterly), averaging out the
+            cost of purchase (rupee cost averaging). A lump sum is a one-time large investment. SIPs reduce the risk of
+            investing at market peaks and encourage financial discipline.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ 2. SWP ══════════════════ -->
+    <div class="section" id="sec-1">
+      <div class="sec-header anim-fade-up">
+        <h2>SWP Calculator</h2>
+        <div class="sec-divider"></div>
+        <p>Estimate how long your corpus will last under systematic monthly withdrawals.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="panel anim-fade-up delay-1">
+          <div class="ph">
+            <div class="ph-icon">💸</div>
+            <h2>Inputs</h2>
+          </div>
+          <div class="pb">
+            <div class="field">
+              <div class="fh"><label>Initial Corpus</label>
+                <div><span class="fv" id="s2-cv">₹25.00L</span></div>
+              </div>
+              <input type="range" id="s2-c" min="100000" max="10000000" step="100000" value="2500000" />
+              <div class="rl"><span>₹1L</span><span>₹1Cr</span></div>
+              <input class="ni" type="number" id="s2-cn" value="2500000" />
+            </div>
+            <div class="field">
+              <div class="fh"><label>Monthly Withdrawal</label>
+                <div><span class="fv" id="s2-wv">₹15,000</span><span class="fu">/mo</span></div>
+              </div>
+              <input type="range" id="s2-w" min="1000" max="200000" step="1000" value="15000" />
+              <div class="rl"><span>₹1K</span><span>₹2L</span></div>
+              <input class="ni" type="number" id="s2-wn" value="15000" />
+            </div>
+            <div class="field">
+              <div class="fh"><label>Expected Annual Return</label>
+                <div><span class="fv" id="s2-rv">8</span><span class="fu">% p.a.</span></div>
+              </div>
+              <input type="range" id="s2-r" min="1" max="20" step="0.5" value="8" />
+              <div class="rl"><span>1%</span><span>20%</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Projection Period</label>
+                <div><span class="fv" id="s2-yv">20</span><span class="fu">yrs</span></div>
+              </div>
+              <input type="range" id="s2-y" min="1" max="40" step="1" value="20" />
+              <div class="rl"><span>1yr</span><span>40yrs</span></div>
+            </div>
+            <button class="atog" onclick="tog('a2')"><span>&#9432; Assumptions</span><span class="tarr"
+                id="a2-arr">▼</span></button>
+            <div class="abody" id="a2">
+              <div class="ai"><span class="ail">Compounding</span><span class="ain">Monthly</span></div>
+              <div class="ai"><span class="ail">Withdrawal timing</span><span class="ain">End of month</span></div>
+              <div class="ai"><span class="ail">Return</span><span class="ain">Constant (illustrative)</span></div>
+              <div class="ai"><span class="ail">Tax / charges</span><span class="ain">Not applied</span></div>
+            </div>
+            <div class="fbox">
+              <div class="ftitle">Formula</div>
+              <div class="fline"><strong>r</strong> = Annual Rate ÷ 12</div>
+              <div class="fline"><em>Balance</em> = PV×(1+r)ⁿ − W×[((1+r)ⁿ−1)÷r]</div>
+            </div>
+          </div>
+        </div>
+        <div class="anim-fade-up delay-2">
+          <div class="panel mb24">
+            <div class="ph">
+              <div class="ph-icon">⭐</div>
+              <h2>Results</h2>
+            </div>
+            <div class="pb">
+              <div class="res-grid">
+                <div class="rc">
+                  <div class="rl2">Total Withdrawn</div>
+                  <div class="rv" id="s2-rw">₹36.00L</div>
+                </div>
+                <div class="rc" id="s2-rb-card">
+                  <div class="rl2">Corpus Balance</div>
+                  <div class="rv" id="s2-rb">₹12.45L</div>
+                </div>
+                <div class="rc hl" id="s2-hl">
+                  <div class="rl2">Corpus Status</div>
+                  <div class="rv" id="s2-rd">Year 20+</div>
+                  <div class="rg" id="s2-rg">Corpus remains positive</div>
+                </div>
+              </div>
+              <div class="clegend">
+                <div class="cli">
+                  <div class="cld" style="background:#224c87"></div>Corpus Balance
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#da3832"></div>Cumulative Withdrawn
+                </div>
+              </div>
+              <div class="chart-wrap"><canvas id="c2"></canvas></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph">
+              <div class="ph-icon">📋</div>
+              <h2>Year-wise Breakdown</h2>
+            </div>
+            <div class="table-wrap">
+              <table class="ytable">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Withdrawn (₹)</th>
+                    <th>Corpus Balance (₹)</th>
+                  </tr>
+                </thead>
+                <tbody id="t2"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SWP INFO SECTION -->
+      <div class="info-section">
+        <h2>SWP Calculator – Systematic Withdrawal Plan Calculator</h2>
+        <p class="info-intro">A Systematic Withdrawal Plan (SWP) allows mutual fund investors to withdraw a fixed amount
+          from their investment at regular intervals. It is the opposite of SIP — instead of investing periodically, you
+          withdraw periodically. SWP is ideal for retirees and those seeking a regular income stream from their existing
+          corpus.</p>
+
+        <h3>What is an SWP Calculator?</h3>
+        <p>An SWP calculator helps you estimate how long your invested corpus will last given a fixed monthly withdrawal
+          amount and an assumed rate of return. It shows the corpus balance at the end of each year, and whether the
+          corpus will be depleted before the end of your chosen period.</p>
+        <div class="info-highlight">SWP is often preferred over Fixed Deposits for regular income because the corpus
+          continues to earn market-linked returns on the remaining balance, potentially lasting longer than a simple FD.
+        </div>
+
+        <h3>How is SWP Calculated?</h3>
+        <p>The SWP formula tracks your corpus month by month:</p>
+        <div class="info-formula-box">
+          <p><strong>Balance(month) = Balance(prev) × (1 + r) − W</strong></p>
+          <p>Where: <strong>r</strong> = Monthly interest rate (Annual Rate ÷ 12) &nbsp;|&nbsp; <strong>W</strong> =
+            Monthly withdrawal amount</p>
+        </div>
+        <p>This process repeats for each month. If the balance falls to zero, the corpus is depleted. The calculator
+          projects this over your chosen number of years.</p>
+
+        <h3>Benefits of Using an SWP</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">🏦</div>
+            <div class="info-card-title">Regular Income</div>
+            <div class="info-card-body">Provides a steady monthly cash flow — like a self-made pension plan.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📈</div>
+            <div class="info-card-title">Corpus Growth</div>
+            <div class="info-card-body">Remaining corpus continues to earn market returns, potentially lasting longer.
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🎛️</div>
+            <div class="info-card-title">Flexibility</div>
+            <div class="info-card-body">You can modify or stop withdrawals at any time unlike fixed annuities.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🏷️</div>
+            <div class="info-card-title">Tax Efficiency</div>
+            <div class="info-card-body">Only the gains component is taxed, making SWP more tax-efficient than FD
+              interest.</div>
+          </div>
+        </div>
+
+        <h3>How to Use This SWP Calculator</h3>
+        <ol class="info-steps">
+          <li>
+            <p><strong>Enter your Initial Corpus</strong> — the lump sum amount you have invested or plan to invest.</p>
+          </li>
+          <li>
+            <p><strong>Set Monthly Withdrawal</strong> — the fixed amount you wish to withdraw each month.</p>
+          </li>
+          <li>
+            <p><strong>Enter Expected Annual Return</strong> — the assumed rate of return your corpus earns.</p>
+          </li>
+          <li>
+            <p><strong>Choose Projection Period</strong> — the number of years you want to analyse.</p>
+          </li>
+          <li>
+            <p>The calculator instantly shows your corpus balance year by year and whether it depletes.</p>
+          </li>
+        </ol>
+
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Can I change my SWP amount after starting?</div>
+          <div class="faq-a">Yes. Most mutual fund SWPs allow you to modify the withdrawal amount or frequency. You can
+            also pause or stop the SWP at any time without penalty (subject to exit load periods).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Is SWP taxable?</div>
+          <div class="faq-a">Yes. Each SWP withdrawal is treated as a redemption. The capital gains tax applies —
+            Short-Term Capital Gains (STCG) at 20% if units are held less than 1 year (equity funds), and Long-Term
+            Capital Gains (LTCG) at 12.5% beyond ₹1.25 lakh for equity funds.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What happens if one withdraws more than the corpus can sustain?
+          </div>
+          <div class="faq-a">If monthly withdrawal exceeds the returns earned, the corpus depletes over time. The
+            calculator shows exactly when this depletion occurs, helping you plan sustainable withdrawals.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ 3. TOP-UP SIP ══════════════════ -->
+    <div class="section" id="sec-2">
+      <div class="sec-header anim-fade-up">
+        <h2>Top-Up SIP Calculator</h2>
+        <div class="sec-divider"></div>
+        <p>See how increasing your SIP annually can dramatically boost your final corpus vs a flat SIP.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="panel anim-fade-up delay-1">
+          <div class="ph">
+            <div class="ph-icon">🚀</div>
+            <h2>Inputs</h2>
+          </div>
+          <div class="pb">
+            <div class="field">
+              <div class="fh"><label>Initial Monthly SIP</label>
+                <div><span class="fv" id="s3-pv">₹5,000</span><span class="fu">/mo</span></div>
+              </div>
+              <input type="range" id="s3-p" min="500" max="100000" step="500" value="5000" />
+              <div class="rl"><span>₹500</span><span>₹1L</span></div>
+              <input class="ni" type="number" id="s3-pn" value="5000" />
+            </div>
+            <div class="field">
+              <div class="fh"><label>Annual Top-Up Rate</label>
+                <div><span class="fv" id="s3-tv">10</span><span class="fu">% p.a.</span></div>
+              </div>
+              <input type="range" id="s3-t" min="0" max="50" step="1" value="10" />
+              <div class="rl"><span>0%</span><span>50%</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Expected Annual Return</label>
+                <div><span class="fv" id="s3-rv">12</span><span class="fu">% p.a.</span></div>
+              </div>
+              <input type="range" id="s3-r" min="1" max="30" step="0.5" value="12" />
+              <div class="rl"><span>1%</span><span>30%</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Investment Duration</label>
+                <div><span class="fv" id="s3-yv">10</span><span class="fu">yrs</span></div>
+              </div>
+              <input type="range" id="s3-y" min="1" max="40" step="1" value="10" />
+              <div class="rl"><span>1yr</span><span>40yrs</span></div>
+            </div>
+            <button class="atog" onclick="tog('a3')"><span>&#9432; Assumptions</span><span class="tarr"
+                id="a3-arr">▼</span></button>
+            <div class="abody" id="a3">
+              <div class="ai"><span class="ail">Compounding</span><span class="ain">Monthly, year-wise step-up</span>
+              </div>
+              <div class="ai"><span class="ail">Top-up applied</span><span class="ain">Every 12 months</span></div>
+              <div class="ai"><span class="ail">Return</span><span class="ain">Constant (illustrative)</span></div>
+            </div>
+            <div class="fbox">
+              <div class="ftitle">Formula (programmatic)</div>
+              <div class="fline"><strong>SIPₙ</strong> = SIP₀ × (1 + top-up)ⁿ</div>
+              <div class="fline"><em>FV</em> = Σ FV of each year's SIP batch</div>
+            </div>
+          </div>
+        </div>
+        <div class="anim-fade-up delay-2">
+          <div class="panel mb24">
+            <div class="ph">
+              <div class="ph-icon">⭐</div>
+              <h2>Results</h2>
+            </div>
+            <div class="pb">
+              <div class="res-grid">
+                <div class="rc">
+                  <div class="rl2">Total Invested</div>
+                  <div class="rv" id="s3-ri">—</div>
+                </div>
+                <div class="rc">
+                  <div class="rl2">Est. Returns</div>
+                  <div class="rv" style="color:var(--red)" id="s3-rr">—</div>
+                </div>
+                <div class="rc hl">
+                  <div class="rl2">Estimated Future Value</div>
+                  <div class="rv" id="s3-rf">—</div>
+                  <div class="rg" id="s3-rg">vs flat SIP</div>
+                </div>
+              </div>
+              <div class="clegend">
+                <div class="cli">
+                  <div class="cld" style="background:#224c87"></div>Invested
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#da3832"></div>Returns
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#aaa;opacity:.7"></div>Flat SIP
+                </div>
+              </div>
+              <div class="chart-wrap"><canvas id="c3"></canvas></div>
+              <div class="drow">
+                <canvas id="d3" width="100" height="100"></canvas>
+                <div class="dstats">
+                  <div class="dr"><span class="drl"><span class="ddot"
+                        style="background:#224c87"></span>Invested</span><span class="drv" id="d3-i">—</span></div>
+                  <div class="dr"><span class="drl"><span class="ddot"
+                        style="background:#da3832"></span>Returns</span><span class="drv" id="d3-r">—</span></div>
+                  <div class="dr" style="background:var(--blue-pale);padding:7px 8px;border-radius:6px;margin-top:4px">
+                    <span class="drl" style="font-weight:700;color:var(--blue)">Total</span><span class="drv"
+                      style="color:var(--blue)" id="d3-t">—</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph">
+              <div class="ph-icon">📋</div>
+              <h2>Year-wise Breakdown</h2>
+            </div>
+            <div class="table-wrap">
+              <table class="ytable">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>SIP/mo (₹)</th>
+                    <th>Invested (₹)</th>
+                    <th>Value (₹)</th>
+                  </tr>
+                </thead>
+                <tbody id="t3"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP-UP SIP INFO SECTION -->
+      <div class="info-section">
+        <h2>Top-Up SIP Calculator – Step-Up SIP Calculator</h2>
+        <p class="info-intro">A Top-Up SIP (also called Step-Up SIP) allows you to increase your SIP contribution by a
+          fixed percentage each year. As your income grows, so does your investment — leading to a dramatically larger
+          corpus compared to a flat SIP. This calculator shows you the power of annual step-ups over time.</p>
+
+        <h3>What is a Top-Up SIP?</h3>
+        <p>In a regular SIP you invest the same amount every month throughout the tenure. In a Top-Up SIP, you increment
+          this amount by a chosen percentage at the end of each year. For example, starting with ₹5,000/month and a 10%
+          annual top-up means you invest ₹5,500/month in Year 2, ₹6,050/month in Year 3, and so on.</p>
+        <div class="info-highlight">A 10% annual top-up on a 10-year SIP can increase the final corpus by
+          <strong>40–60%</strong> compared to a flat SIP — often matching the natural growth of your income (salary
+          increments).
+        </div>
+
+        <h3>How is Top-Up SIP Calculated?</h3>
+        <div class="info-formula-box">
+          <p><strong>SIP(year n)</strong> = SIP₀ × (1 + top-up%)ⁿ</p>
+          <p><strong>FV</strong> = Σ (Future Value of each year's SIP batch)</p>
+          <p>Each year is treated as a separate SIP with the stepped-up amount and remaining months to maturity.</p>
+        </div>
+
+        <h3>Advantages of Top-Up SIP</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">🔺</div>
+            <div class="info-card-title">Higher Corpus</div>
+            <div class="info-card-body">Even a modest 10% step-up can significantly boost your final wealth.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📅</div>
+            <div class="info-card-title">Income-Aligned</div>
+            <div class="info-card-body">Annual increments mirror your salary/income growth, making it painless.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">⚡</div>
+            <div class="info-card-title">Power of Compounding</div>
+            <div class="info-card-body">Higher early investments compound for longer, amplifying returns exponentially.
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🎯</div>
+            <div class="info-card-title">Goal Achievement</div>
+            <div class="info-card-body">Reach financial goals faster without dramatically increasing monthly burden.
+            </div>
+          </div>
+        </div>
+
+        <h3>Flat SIP vs Top-Up SIP – Key Difference</h3>
+        <ul>
+          <li><strong>Flat SIP:</strong> Same monthly investment throughout the tenure. Simple and predictable.</li>
+          <li><strong>Top-Up SIP:</strong> Investment grows annually by a chosen percentage. More wealth, aligned with
+            income growth.</li>
+          <li>The chart above shows both side-by-side so you can instantly see the benefit of stepping up.</li>
+        </ul>
+
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Is Top-Up SIP available in all mutual funds?</div>
+          <div class="faq-a">Most major fund houses including HDFC, SBI, ICICI, and Nippon India offer Step-Up/Top-Up
+            SIP facility. You can select the step-up percentage when registering your SIP mandate.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What top-up percentage should I choose?</div>
+          <div class="faq-a">A common recommendation is to match your expected annual salary increment — typically 10%
+            to 15%. Even a 5% annual step-up makes a meaningful difference over 10+ years.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Can I stop the top-up while continuing the SIP?</div>
+          <div class="faq-a">Yes. The SIP can continue at the last increased amount while you pause the step-up feature.
+            Consult your fund house or distributor for the exact process.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ 4. GOAL-BASED ══════════════════ -->
+    <div class="section" id="sec-3">
+      <div class="sec-header anim-fade-up">
+        <h2>Goal-Based Calculator</h2>
+        <div class="sec-divider"></div>
+        <p>Toggle between "I know my investment" or "I know my goal" to match your planning style.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="panel anim-fade-up delay-1">
+          <div class="ph">
+            <div class="ph-icon">🎯</div>
+            <h2>Inputs</h2>
+          </div>
+          <div class="pb">
+            <!-- RADIO TOGGLE (matches reference image) -->
+            <div class="radio-toggle-group" style="margin-bottom:24px">
+              <label>
+                <input type="radio" id="gb-radio-inv" name="goalMode" checked onchange="setGoalMode('investment')" />
+                I know my investment
+              </label>
+              <label>
+                <input type="radio" id="gb-radio-goal" name="goalMode" onchange="setGoalMode('goal')" />
+                I know my goal
+              </label>
+            </div>
+
+            <!-- INVESTMENT MODE -->
+            <div id="gb-inv-mode">
+              <div class="field">
+                <div class="fh"><label>Goal Name</label></div>
+                <select class="ni" id="s4-gn" onchange="calc4()">
+                  <option>Child's Education</option>
+                  <option>Home Purchase</option>
+                  <option>Wedding</option>
+                  <option>International Travel</option>
+                  <option>Retirement Corpus</option>
+                  <option>Emergency Fund</option>
+                  <option>Vehicle Purchase</option>
+                  <option>Custom Goal</option>
+                </select>
+              </div>
+              <div class="field">
+                <div class="fh"><label>Current Cost of Goal</label>
+                  <div><span class="fv" id="s4-cv">₹25.00L</span></div>
+                </div>
+                <input type="range" id="s4-c" min="10000" max="10000000" step="10000" value="2500000" />
+                <div class="rl"><span>₹10K</span><span>₹1Cr</span></div>
+                <input class="ni" type="number" id="s4-cn" value="2500000" />
+              </div>
+              <div class="field">
+                <div class="fh"><label>Years to Goal</label>
+                  <div><span class="fv" id="s4-yv">15</span><span class="fu">yrs</span></div>
+                </div>
+                <input type="range" id="s4-y" min="1" max="40" step="1" value="15" />
+                <div class="rl"><span>1yr</span><span>40yrs</span></div>
+              </div>
+              <div class="field">
+                <div class="fh"><label>Assumed Inflation Rate</label>
+                  <div><span class="fv" id="s4-iv">6</span><span class="fu">% p.a.</span></div>
+                </div>
+                <input type="range" id="s4-i" min="0" max="15" step="0.5" value="6" />
+                <div class="rl"><span>0%</span><span>15%</span></div>
+              </div>
+              <div class="field">
+                <div class="fh"><label>Expected Annual Return</label>
+                  <div><span class="fv" id="s4-rv">12</span><span class="fu">% p.a.</span></div>
+                </div>
+                <input type="range" id="s4-r" min="1" max="30" step="0.5" value="12" />
+                <div class="rl"><span>1%</span><span>30%</span></div>
+              </div>
+            </div>
+
+            <!-- GOAL MODE (I know my goal) — matches reference image sliders -->
+            <div id="gb-goal-mode" style="display:none">
+              <div class="field">
+                <div class="fh"><label>Goal Amount</label>
+                  <input class="ni" type="number" id="s4g-gn" value="50000" placeholder="Enter goal amount"
+                    style="width:120px;margin-top:0" />
+                </div>
+                <div class="tick-slider-wrap">
+                  <input type="range" id="s4g-g" min="0" max="10000000" step="50000" value="50000" />
+                  <div class="tick-labels">
+                    <span>0</span><span>1Cr</span><span>2Cr</span><span>3Cr</span><span>4Cr</span><span>5Cr</span><span>6Cr</span><span>7Cr</span><span>8Cr</span><span>9Cr</span><span>10Cr</span>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="fh"><label>Expected return rate (per annum)</label>
+                  <input class="ni" type="number" id="s4g-rn" value="12" step="0.5" min="0" max="50"
+                    style="width:80px;margin-top:0" />
+                </div>
+                <input type="range" id="s4g-r" min="0" max="50" step="0.5" value="12" />
+                <div class="rl">
+                  <span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="fh"><label>Tenure</label>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <input class="ni" type="number" id="s4g-tn" value="5" min="0" max="50"
+                      style="width:70px;margin-top:0" />
+                    <select class="ni" style="width:90px;margin-top:0">
+                      <option>Year(s)</option>
+                    </select>
+                  </div>
+                </div>
+                <input type="range" id="s4g-t" min="0" max="50" step="1" value="5" />
+                <div class="tick-labels"
+                  style="display:flex;justify-content:space-between;font-size:9px;color:var(--grey);margin-top:5px;font-weight:600">
+                  <span>0Y</span><span>5Y</span><span>10Y</span><span>15Y</span><span>20Y</span><span>25Y</span><span>30Y</span><span>35Y</span><span>40Y</span><span>45Y</span><span>50Y</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="atog" onclick="tog('a4')"><span>&#9432; Assumptions</span><span class="tarr"
+                id="a4-arr">▼</span></button>
+            <div class="abody" id="a4">
+              <div class="ai"><span class="ail">Inflation applied</span><span class="ain">Annual, constant</span></div>
+              <div class="ai"><span class="ail">Return</span><span class="ain">Constant (illustrative)</span></div>
+              <div class="ai"><span class="ail">SIP timing</span><span class="ain">Start of month</span></div>
+            </div>
+            <div class="fbox">
+              <div class="ftitle">Formula</div>
+              <div class="fline"><em>FV_goal</em> = Cost × (1+inflation)^Years</div>
+              <div class="fline"><em>SIP</em> = FV × r ÷ [((1+r)ⁿ − 1) × (1+r)]</div>
+            </div>
+          </div>
+        </div>
+        <div class="anim-fade-up delay-2">
+          <div class="panel mb24">
+            <div class="ph">
+              <div class="ph-icon">⭐</div>
+              <h2>Results</h2>
+            </div>
+            <div class="pb" id="s4-results-wrap">
+              <div class="res-grid" id="s4-res-inv">
+                <div class="rc">
+                  <div class="rl2">Inflated Goal Value</div>
+                  <div class="rv" id="s4-rg">—</div>
+                </div>
+                <div class="rc">
+                  <div class="rl2">Total You'll Invest</div>
+                  <div class="rv" id="s4-ri">—</div>
+                </div>
+                <div class="rc hl">
+                  <div class="rl2">Required Monthly SIP</div>
+                  <div class="rv" id="s4-rs">—</div>
+                  <div class="rg" id="s4-rn">—</div>
+                </div>
+              </div>
+              <div class="res-grid" id="s4-res-goal" style="display:none">
+                <div class="rc">
+                  <div class="rl2">Goal Amount</div>
+                  <div class="rv" id="s4g-goal">—</div>
+                </div>
+                <div class="rc">
+                  <div class="rl2">Total Invested</div>
+                  <div class="rv" id="s4g-inv">—</div>
+                </div>
+                <div class="rc hl">
+                  <div class="rl2">Required Monthly SIP</div>
+                  <div class="rv" id="s4g-sip">—</div>
+                  <div class="rg" id="s4g-note">—</div>
+                </div>
+              </div>
+              <div class="clegend">
+                <div class="cli">
+                  <div class="cld" style="background:#224c87"></div>Corpus
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#da3832"></div>Goal Target
+                </div>
+              </div>
+              <div class="chart-wrap"><canvas id="c4"></canvas></div>
+              <!-- Growth line chart for goal mode -->
+              <div id="goal-growth-wrap" style="display:none;margin-top:16px">
+                <div class="growth-chart-canvas" style="height:220px"><canvas id="growth-chart-goal"></canvas></div>
+              </div>
+              <div class="drow">
+                <canvas id="d4" width="100" height="100"></canvas>
+                <div class="dstats">
+                  <div class="dr"><span class="drl"><span class="ddot" style="background:#224c87"></span>You
+                      Invest</span><span class="drv" id="d4-i">—</span></div>
+                  <div class="dr"><span class="drl"><span class="ddot"
+                        style="background:#da3832"></span>Returns</span><span class="drv" id="d4-r">—</span></div>
+                  <div class="dr" style="background:var(--blue-pale);padding:7px 8px;border-radius:6px;margin-top:4px">
+                    <span class="drl" style="font-weight:700;color:var(--blue)">Goal</span><span class="drv"
+                      style="color:var(--blue)" id="d4-t">—</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph">
+              <div class="ph-icon">📋</div>
+              <h2>Year-wise Progress</h2>
+            </div>
+            <div class="table-wrap">
+              <table class="ytable">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Invested (₹)</th>
+                    <th>Corpus (₹)</th>
+                    <th>Goal (₹)</th>
+                  </tr>
+                </thead>
+                <tbody id="t4"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOAL-BASED INFO SECTION -->
+      <div class="info-section">
+        <h2>Goal-Based SIP Calculator</h2>
+        <p class="info-intro">A goal-based calculator helps you work backwards from a financial goal to determine the
+          monthly SIP you need. Instead of asking "how much will my SIP grow to?", it answers "how much do I need to
+          invest monthly to achieve my goal?" — the smarter way to plan your financial future.</p>
+
+        <h3>I Know My Investment vs I Know My Goal</h3>
+        <p>This calculator offers two modes:</p>
+        <ul>
+          <li><strong>I Know My Investment:</strong> You know the current cost of your goal (e.g., ₹25L for a house down
+            payment), an inflation rate, and years to goal. The calculator inflates the goal to its future value and
+            derives the required monthly SIP.</li>
+          <li><strong>I Know My Goal:</strong> You directly enter the target future amount and the calculator tells you
+            exactly how much to invest monthly via SIP.</li>
+        </ul>
+
+        <h3>How is the Required SIP Calculated?</h3>
+        <div class="info-formula-box">
+          <p><strong>FV_goal</strong> = Current Cost × (1 + Inflation Rate)^Years</p>
+          <p><strong>Required SIP</strong> = FV_goal × r / [((1 + r)ⁿ − 1) × (1 + r)]</p>
+          <p>Where: <strong>r</strong> = Monthly return rate (Annual Return ÷ 12) &nbsp;|&nbsp; <strong>n</strong> =
+            Tenure in months</p>
+        </div>
+
+        <h3>Why Account for Inflation?</h3>
+        <p>Inflation erodes the future purchasing power of money. A car that costs ₹10L today may cost ₹17.9L in 10
+          years at 6% inflation. If you plan based on today's cost, you'll fall short. The calculator adjusts your goal
+          to its future inflated value automatically.</p>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">🏠</div>
+            <div class="info-card-title">Home Purchase</div>
+            <div class="info-card-body">Plan your down payment adjusted for real estate price inflation.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🎓</div>
+            <div class="info-card-title">Child's Education</div>
+            <div class="info-card-body">Education costs inflate fast — plan today for tomorrow's tuition fees.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">💒</div>
+            <div class="info-card-title">Wedding</div>
+            <div class="info-card-body">Set aside the right amount to ensure a memorable event without financial stress.
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">✈️</div>
+            <div class="info-card-title">Dream Travel</div>
+            <div class="info-card-body">Plan international trips in advance and save systematically toward them.</div>
+          </div>
+        </div>
+
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What if I can't afford the required SIP?</div>
+          <div class="faq-a">You can adjust levers: extend the goal timeline, increase the assumed return rate (by
+            choosing higher-risk equity funds), reduce the goal amount, or start a smaller SIP and use the Top-Up SIP to
+            increase it over time.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What inflation rate should I use?</div>
+          <div class="faq-a">India's average consumer price inflation has been around 5–6% historically. For specific
+            goals like education (8–10%) or real estate (7–10%), use higher rates. The calculator defaults to 6%.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Can I have multiple SIPs for different goals?</div>
+          <div class="faq-a">Absolutely. Financial planners recommend segregating investments by goal — a separate SIP
+            for education, home, retirement, etc. This ensures each goal is funded without mixing.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ 5. RETIREMENT ══════════════════ -->
+    <div class="section" id="sec-4">
+      <div class="sec-header anim-fade-up">
+        <h2>Retirement Planning Calculator</h2>
+        <div class="sec-divider"></div>
+        <p>Three-step model: inflate expenses → calculate corpus → derive required monthly SIP.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="panel anim-fade-up delay-1">
+          <div class="ph">
+            <div class="ph-icon">🏖️</div>
+            <h2>Inputs</h2>
+          </div>
+          <div class="pb">
+            <div class="field">
+              <div class="fh"><label>Current Age</label>
+                <div><span class="fv" id="s5-cav">30</span><span class="fu">yrs</span></div>
+              </div><input type="range" id="s5-ca" min="18" max="60" step="1" value="30" />
+              <div class="rl"><span>18</span><span>60</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Retirement Age</label>
+                <div><span class="fv" id="s5-rav">60</span><span class="fu">yrs</span></div>
+              </div><input type="range" id="s5-ra" min="40" max="75" step="1" value="60" />
+              <div class="rl"><span>40</span><span>75</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Life Expectancy</label>
+                <div><span class="fv" id="s5-lev">85</span><span class="fu">yrs</span></div>
+              </div><input type="range" id="s5-le" min="60" max="100" step="1" value="85" />
+              <div class="rl"><span>60</span><span>100</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Current Annual Expenses</label>
+                <div><span class="fv" id="s5-ev">₹6.00L</span></div>
+              </div>
+              <input type="range" id="s5-e" min="100000" max="5000000" step="50000" value="600000" />
+              <div class="rl"><span>₹1L</span><span>₹50L</span></div>
+              <input class="ni" type="number" id="s5-en" value="600000" />
+            </div>
+            <div class="field">
+              <div class="fh"><label>Expected Inflation</label>
+                <div><span class="fv" id="s5-iv">6</span><span class="fu">% p.a.</span></div>
+              </div><input type="range" id="s5-i" min="1" max="15" step="0.5" value="6" />
+              <div class="rl"><span>1%</span><span>15%</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Pre-retirement Return</label>
+                <div><span class="fv" id="s5-prv">12</span><span class="fu">% p.a.</span></div>
+              </div><input type="range" id="s5-pr" min="1" max="25" step="0.5" value="12" />
+              <div class="rl"><span>1%</span><span>25%</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Post-retirement Return</label>
+                <div><span class="fv" id="s5-porv">7</span><span class="fu">% p.a.</span></div>
+              </div><input type="range" id="s5-por" min="1" max="15" step="0.5" value="7" />
+              <div class="rl"><span>1%</span><span>15%</span></div>
+            </div>
+            <button class="atog" onclick="tog('a5')"><span>&#9432; Assumptions</span><span class="tarr"
+                id="a5-arr">▼</span></button>
+            <div class="abody" id="a5">
+              <div class="ai"><span class="ail">Inflation</span><span class="ain">Annual, constant</span></div>
+              <div class="ai"><span class="ail">Corpus formula</span><span class="ain">PV of Annuity (annual)</span>
+              </div>
+              <div class="ai"><span class="ail">SIP accumulation</span><span class="ain">Monthly compounding</span>
+              </div>
+            </div>
+            <div class="fbox">
+              <div class="ftitle">3-Step Formula</div>
+              <div class="fline"><em>RetExp</em> = CurrExp × (1+inf)^years</div>
+              <div class="fline"><em>Corpus</em> = Exp × [(1−(1+r)^−t) ÷ r]</div>
+              <div class="fline"><em>SIP</em> = Corpus via SIP accumulation</div>
+            </div>
+          </div>
+        </div>
+        <div class="anim-fade-up delay-2">
+          <div class="panel mb24">
+            <div class="ph">
+              <div class="ph-icon">⭐</div>
+              <h2>Results</h2>
+            </div>
+            <div class="pb">
+              <div class="res-grid">
+                <div class="rc">
+                  <div class="rl2">Ret. Annual Expense</div>
+                  <div class="rv" id="s5-re">—</div>
+                </div>
+                <div class="rc">
+                  <div class="rl2">Working Years</div>
+                  <div class="rv" id="s5-wy">—</div>
+                </div>
+                <div class="rc hl">
+                  <div class="rl2">Retirement Corpus Needed</div>
+                  <div class="rv" id="s5-rc">—</div>
+                  <div class="rg" id="s5-rg">—</div>
+                </div>
+                <div class="rc hl2">
+                  <div class="rl2">Required Monthly SIP</div>
+                  <div class="rv" id="s5-rs">—</div>
+                  <div class="rg" id="s5-rsg">—</div>
+                </div>
+              </div>
+              <div class="clegend">
+                <div class="cli">
+                  <div class="cld" style="background:#224c87"></div>Corpus Accumulation
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#da3832"></div>Corpus Target
+                </div>
+              </div>
+              <div class="chart-wrap" style="height:230px"><canvas id="c5"></canvas></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph">
+              <div class="ph-icon">📋</div>
+              <h2>Accumulation Milestones</h2>
+            </div>
+            <div class="table-wrap">
+              <table class="ytable">
+                <thead>
+                  <tr>
+                    <th>Age</th>
+                    <th>Invested (₹)</th>
+                    <th>Corpus (₹)</th>
+                    <th>Goal %</th>
+                  </tr>
+                </thead>
+                <tbody id="t5"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RETIREMENT INFO SECTION -->
+      <div class="info-section">
+        <h2>Retirement Planning Calculator</h2>
+        <p class="info-intro">Retirement planning is one of the most critical aspects of personal finance. This
+          calculator uses a 3-step model to determine how much you need to save monthly via SIP to retire comfortably —
+          accounting for inflation, life expectancy, and post-retirement returns.</p>
+
+        <h3>How Does the Retirement Calculator Work?</h3>
+        <p>The calculator follows a 3-step process:</p>
+        <ol class="info-steps">
+          <li>
+            <p><strong>Step 1 – Inflate Expenses:</strong> Your current annual expenses are inflated to your retirement
+              age using the assumed inflation rate. This gives your annual expense at retirement: <em>RetExp =
+                CurrentExp × (1 + inflation)^WorkingYears</em></p>
+          </li>
+          <li>
+            <p><strong>Step 2 – Calculate Required Corpus:</strong> Using your post-retirement return and expected
+              lifespan, the Present Value of Annuity formula gives the total corpus needed: <em>Corpus = RetExp × [(1 −
+                (1 + r)^−t) / r]</em></p>
+          </li>
+          <li>
+            <p><strong>Step 3 – Derive Monthly SIP:</strong> The monthly SIP required to accumulate that corpus during
+              your working years is calculated using the reverse SIP formula.</p>
+          </li>
+        </ol>
+        <div class="info-formula-box">
+          <p><strong>RetExp</strong> = CurrExp × (1 + inf)^workingYears</p>
+          <p><strong>Corpus</strong> = RetExp × [(1 − (1 + r_post)^−retDuration) / r_post]</p>
+          <p><strong>SIP</strong> = Corpus × r_pre / [((1 + r_pre)ⁿ − 1) × (1 + r_pre)]</p>
+        </div>
+
+        <h3>Key Concepts</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">📉</div>
+            <div class="info-card-title">Inflation Impact</div>
+            <div class="info-card-body">At 6% inflation, ₹60,000 monthly expenses today become ~₹1.93L/month in 20
+              years.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🏗️</div>
+            <div class="info-card-title">Corpus Building</div>
+            <div class="info-card-body">Equity funds (12–15% returns) during working years grow your SIP aggressively.
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🛡️</div>
+            <div class="info-card-title">Post-Retirement</div>
+            <div class="info-card-body">Shift to conservative debt funds (6–8%) to protect the corpus after retirement.
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">⏳</div>
+            <div class="info-card-title">Longevity Risk</div>
+            <div class="info-card-body">Plan for 85–90 years life expectancy to avoid outliving your savings.</div>
+          </div>
+        </div>
+
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">How much corpus is enough for retirement?</div>
+          <div class="faq-a">It depends on your lifestyle, city of residence, and life expectancy. A common rule of
+            thumb is 25× your annual retirement expenses (the 4% withdrawal rule). Our calculator derives this precisely
+            based on your inputs.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Should I include EPF/NPS in retirement planning?</div>
+          <div class="faq-a">Yes. If you already have EPF, NPS, or a pension, reduce your required corpus by those
+            projected amounts. The SIP calculated here represents the additional amount you need to build.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">At what age should I start retirement planning?</div>
+          <div class="faq-a">The earlier the better. Starting at 25 vs 35 for the same retirement goal can reduce the
+            required monthly SIP by 60–70% due to the power of compounding over a longer period.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What return rate should I assume?</div>
+          <div class="faq-a">For equity mutual funds (pre-retirement), 10–14% is a reasonable long-term historical
+            estimate. For debt/hybrid funds post-retirement, 6–8% is more appropriate. Always keep a margin of safety.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ 6. ADVANCED SIP ══════════════════ -->
+    <div class="section" id="sec-5">
+      <div class="sec-header anim-fade-up">
+        <h2>Advanced SIP Calculator</h2>
+        <div class="sec-divider"></div>
+        <p>Returns Estimator with inflation adjustment, custom return input, and scenario comparison.</p>
+      </div>
+      <div class="calc-grid">
+        <div class="panel anim-fade-up delay-1">
+          <div class="ph">
+            <div class="ph-icon">⚡</div>
+            <h2>Returns Estimator</h2>
+          </div>
+          <div class="pb">
+            <div class="field">
+              <label style="display:block;margin-bottom:10px">Enter Amount</label>
+              <div class="amt-box">
+                <div class="amt-box-label">Monthly SIP (₹)</div>
+                <input class="amt-box-input" type="number" id="adv-p" value="5000" min="100"
+                  placeholder="₹ Enter amount" oninput="calcAdv()" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Select Duration</label>
+                <div><span class="fv" id="adv-yv">20</span><span class="fu">Yrs</span></div>
+              </div>
+              <input type="range" id="adv-y" min="1" max="30" step="1" value="20" />
+              <div class="rl"><span>1 Yr</span><span>30 Yrs</span></div>
+            </div>
+            <div class="field">
+              <div class="fh"><label>Expected Rate of Return</label>
+                <div><span class="fv" id="adv-rv">14.27</span><span class="fu">%</span></div>
+              </div>
+              <input type="range" id="adv-r" min="8" max="30" step="0.01" value="14.27" />
+              <div class="rl"><span>8%</span><span>30%</span></div>
+              <input class="ni" type="number" id="adv-rn" value="14.27" step="0.01" min="1" max="30"
+                placeholder="Enter rate" />
+            </div>
+            <div class="field">
+              <label style="display:block;margin-bottom:8px">Calculate with Inflation</label>
+              <div class="inf-toggle" onclick="toggleInf()">
+                <div>
+                  <div class="inf-toggle-label">Inflation Adjustment</div>
+                  <div class="inf-toggle-sub">Adjusts real purchasing power of returns</div>
+                </div>
+                <label class="switch" onclick="event.stopPropagation()">
+                  <input type="checkbox" id="adv-inf" onchange="calcAdv()" />
+                  <span class="slider-sw"></span>
+                </label>
+              </div>
+              <div id="adv-inf-rate-wrap" style="display:none;margin-top:12px">
+                <div class="fh"><label>Assumed Inflation Rate</label>
+                  <div><span class="fv" id="adv-irv">6</span><span class="fu">% p.a.</span></div>
+                </div>
+                <input type="range" id="adv-ir" min="1" max="12" step="0.5" value="6"
+                  oninput="document.getElementById('adv-irv').textContent=this.value;calcAdv()" />
+                <div class="rl"><span>1%</span><span>12%</span></div>
+              </div>
+            </div>
+            <div class="field">
+              <label style="display:block;margin-bottom:8px">Compare Scenarios</label>
+              <div class="adv-mode-tabs">
+                <button class="adv-tab active" id="scn-btn-1"
+                  onclick="setScenario(1)">Conservative<br><small>8%</small></button>
+                <button class="adv-tab" id="scn-btn-2" onclick="setScenario(2)">Moderate<br><small>12%</small></button>
+                <button class="adv-tab" id="scn-btn-3"
+                  onclick="setScenario(3)">Aggressive<br><small>18%</small></button>
+                <button class="adv-tab" id="scn-btn-4" onclick="setScenario(4)">Custom</button>
+              </div>
+            </div>
+            <button class="atog" onclick="tog('a6')"><span>&#9432; Assumptions</span><span class="tarr"
+                id="a6-arr">▼</span></button>
+            <div class="abody" id="a6">
+              <div class="ai"><span class="ail">Compounding</span><span class="ain">Monthly</span></div>
+              <div class="ai"><span class="ail">Inflation model</span><span class="ain">Reduces nominal FV to real
+                  FV</span></div>
+              <div class="ai"><span class="ail">Return</span><span class="ain">Constant nominal (illustrative)</span>
+              </div>
+              <div class="ai"><span class="ail">Past performance</span><span class="ain">Not indicative of future</span>
+              </div>
+            </div>
+            <div class="fbox">
+              <div class="ftitle">Advanced Formula</div>
+              <div class="fline"><em>Nominal FV</em> = P×[((1+r)ⁿ−1)÷r]×(1+r)</div>
+              <div class="fline"><em>Real FV</em> = Nominal FV ÷ (1+inflation)ⁿ</div>
+              <div class="fline"><strong>Real Return</strong> = [(1+nominal)÷(1+inf)]−1</div>
+            </div>
+          </div>
+        </div>
+        <div class="anim-fade-up delay-2">
+          <div class="panel mb24">
+            <div class="ph">
+              <div class="ph-icon">⭐</div>
+              <h2>Advanced Results</h2>
+            </div>
+            <div class="pb">
+              <div class="res-grid">
+                <div class="rc">
+                  <div class="rl2">Total Invested</div>
+                  <div class="rv" id="adv-ri">—</div>
+                </div>
+                <div class="rc">
+                  <div class="rl2">Nominal Returns</div>
+                  <div class="rv" style="color:var(--red)" id="adv-rr">—</div>
+                </div>
+                <div class="rc hl">
+                  <div class="rl2">Estimated Future Value (Nominal)</div>
+                  <div class="rv" id="adv-rf">—</div>
+                  <div class="rg" id="adv-rg">—</div>
+                </div>
+              </div>
+              <div id="adv-real-wrap" style="display:none;margin-bottom:16px">
+                <div class="rc"
+                  style="background:var(--blue-pale2);border-radius:10px;padding:16px;border:1.5px solid rgba(34,76,135,.2)">
+                  <div class="rl2" style="color:var(--blue)">Inflation-Adjusted (Real) Value</div>
+                  <div style="font-size:24px;font-weight:800;color:var(--blue);margin-top:4px" id="adv-real">—</div>
+                  <div style="font-size:10px;color:var(--grey);margin-top:4px" id="adv-real-note">Real purchasing power
+                    of your corpus</div>
+                </div>
+              </div>
+              <div style="margin-bottom:16px">
+                <div class="rl2" style="margin-bottom:10px;color:var(--dark)">Scenario Comparison</div>
+                <div id="adv-scenarios" style="display:flex;flex-direction:column;gap:8px"></div>
+              </div>
+              <div class="clegend">
+                <div class="cli">
+                  <div class="cld" style="background:#224c87"></div>Invested
+                </div>
+                <div class="cli">
+                  <div class="cld" style="background:#da3832"></div>Nominal Returns
+                </div>
+                <div class="cli" id="adv-inf-legend" style="display:none">
+                  <div class="cld" style="background:#ff9800"></div>Real Value
+                </div>
+              </div>
+              <div class="chart-wrap" style="height:230px"><canvas id="c6"></canvas></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph">
+              <div class="ph-icon">📋</div>
+              <h2>Year-wise Breakdown</h2>
+            </div>
+            <div class="table-wrap">
+              <table class="ytable" id="adv-table-head">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Invested (₹)</th>
+                    <th>Nominal FV (₹)</th>
+                    <th id="adv-th-real">Returns (₹)</th>
+                  </tr>
+                </thead>
+                <tbody id="t6"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADVANCED SIP INFO SECTION -->
+      <div class="info-section">
+        <h2>Advanced SIP Calculator – Returns Estimator</h2>
+        <p class="info-intro">The Advanced SIP Calculator goes beyond the basic SIP formula. It includes inflation
+          adjustment to show the real purchasing power of your corpus, scenario comparison across Conservative,
+          Moderate, and Aggressive return assumptions, and a customisable return rate — giving you a comprehensive,
+          multi-dimensional view of your SIP investment.</p>
+
+        <h3>Nominal vs Real Returns</h3>
+        <p>A common mistake investors make is ignoring inflation. If your SIP grows at 14% but inflation is 6%, your
+          real return is only about 7.5%. The advanced calculator shows both:</p>
+        <div class="info-formula-box">
+          <p><strong>Nominal FV</strong> = P × [((1 + r)ⁿ − 1) / r] × (1 + r)</p>
+          <p><strong>Real FV</strong> = Nominal FV / (1 + inflation)ⁿ</p>
+          <p><strong>Real Return Rate</strong> = [(1 + Nominal) / (1 + Inflation)] − 1</p>
+        </div>
+        <div class="info-highlight">Toggle "Inflation Adjustment" to instantly see your corpus's real value in today's
+          rupees — a truer measure of your financial wealth.</div>
+
+        <h3>Scenario Comparison</h3>
+        <p>Uncertainty in market returns means you should plan for multiple scenarios. This calculator provides:</p>
+        <ul>
+          <li><strong>Conservative (8%):</strong> Debt-heavy or hybrid funds — lower risk, lower return.</li>
+          <li><strong>Moderate (12%):</strong> Balanced equity fund — historical average for large-cap equity.</li>
+          <li><strong>Aggressive (18%):</strong> Small/mid-cap equity — higher potential with higher volatility.</li>
+          <li><strong>Custom:</strong> Enter any rate that matches your specific fund's expected performance.</li>
+        </ul>
+
+        <h3>Key Advantages</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">🧮</div>
+            <div class="info-card-title">Precise Rate Input</div>
+            <div class="info-card-body">Enter exact rates like 14.27% to match specific fund historical returns.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📉</div>
+            <div class="info-card-title">Inflation-Adjusted</div>
+            <div class="info-card-body">See your real wealth in today's rupees, not just nominal figures.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🔄</div>
+            <div class="info-card-title">Scenario Analysis</div>
+            <div class="info-card-body">Compare best/worst/moderate outcomes side by side with progress bars.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📋</div>
+            <div class="info-card-title">Year-by-Year Table</div>
+            <div class="info-card-body">Track your investment growth year by year with nominal and real values.</div>
+          </div>
+        </div>
+
+        <h3>How to Use This Calculator</h3>
+        <ol class="info-steps">
+          <li>
+            <p>Enter your monthly SIP amount in the amount box.</p>
+          </li>
+          <li>
+            <p>Use the duration slider to choose your investment period (1–30 years).</p>
+          </li>
+          <li>
+            <p>Set the expected return rate using the slider or type it directly.</p>
+          </li>
+          <li>
+            <p>Toggle "Inflation Adjustment" to see the impact of inflation on your real returns.</p>
+          </li>
+          <li>
+            <p>Use the scenario tabs to instantly compare Conservative, Moderate, and Aggressive outcomes.</p>
+          </li>
+        </ol>
+
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">What is a realistic expected return rate for an SIP?</div>
+          <div class="faq-a">Large-cap funds have historically returned 10–13% annually over long periods. Mid-cap funds
+            have returned 14–18%, and small-cap funds 16–20%, but with higher volatility. Past performance is not
+            indicative of future returns.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Why is my inflation-adjusted value so much lower?</div>
+          <div class="faq-a">At 6% inflation over 20 years, the purchasing power of money halves roughly every 12 years.
+            So a ₹1 Cr nominal corpus may only have ~₹31L worth of purchasing power in today's terms. This underscores
+            why beating inflation is crucial.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">How should I use the scenario comparison?</div>
+          <div class="faq-a">Use the conservative estimate as your minimum target — ensure your financial goal is met
+            even in the worst case. If your goal is met under the conservative scenario, you're on a safe financial
+            track regardless of market conditions.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqTog(this)">Does this calculator account for taxes on returns?</div>
+          <div class="faq-a">No, taxes are not applied. Long-term capital gains (LTCG) on equity funds above ₹1.25 lakh
+            per year are taxed at 12.5% (effective from July 2024). For precise post-tax returns, reduce the assumed
+            return rate by ~1–2%.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disc">
+      <div class="disc-t">⚠ Important Disclaimer</div>
+      <p>This tool has been designed for information purposes only. Actual results may vary depending on various factors
+        involved in capital market. Investor should not consider above as a recommendation for any schemes of HDFC
+        Mutual Fund. Past performance may or may not be sustained in future and is not a guarantee of any future
+        returns. All figures shown are illustrative estimates based on user-defined assumptions and do not represent
+        actual investment outcomes.</p>
+    </div>
+
+  </div><!-- /sections -->
+
+  <footer>
+    <strong>FinCal Innovation Hackathon</strong> · Co-Sponsored by HDFC Mutual Fund · Technex '26 · 13–15 Mar 2026
+    &nbsp;|&nbsp; Investor Education &amp; Awareness Initiative
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
